@@ -302,6 +302,9 @@ class AllEater extends Def{
         }
     }    
 }
+
+////////////////////////// DALEK ///////////////////////////
+
 class Dalek {
     constructor(x, y, index) {
         this.x = x;
