@@ -1,4 +1,4 @@
-class Def{
+module.exports =  class Def{
     constructor(x, y, index){
         this.x = x;
         this.y = y;

@@ -1,6 +1,4 @@
-////////////////////////// DALEK ///////////////////////////
-
-class Dalek {
+module.exports = class Dalek {
     constructor(x, y, index) {
         this.x = x;
         this.y = y;

@@ -1,6 +1,6 @@
-//////////////////// GRASS /////////////////
+let Def = require("./defClass")
 
-class Grass extends Def{
+module.exports = class Grass extends Def{
     mul() {
         this.multiply++;
         var newCell = random(super.chooseCell(0));

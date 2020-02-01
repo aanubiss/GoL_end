@@ -1,6 +1,6 @@
-/////////////////// PREDATOR /////////////////
+let Def = require("./defClass")
 
-class Predator extends Def {
+module.exports = class Predator extends Def {
     constructor(x, y, index){
         super(x, y, index)
         this.energy = 6;

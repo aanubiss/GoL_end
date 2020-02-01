@@ -1,6 +1,6 @@
-////////////////////////// AllEater ///////////////////////
+let Def = require("./defClass")
 
-class AllEater extends Def{
+module.exports = class AllEater extends Def{
     constructor(x, y, index){
         super(x, y, index);
         this.energ = 7;

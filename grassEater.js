@@ -1,6 +1,6 @@
-///////////////////// GRASSEATER ////////////////////
+let Def = require("./defClass")
 
-class GrassEater extends Def{
+module.exports = class GrassEater extends Def{
     constructor(x, y, index){
         super(x, y, index)
         this.energy = 10
