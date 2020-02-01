@@ -1,0 +1,27 @@
+{
+  "name": "gol",
+  "version": "1.0.0",
+  "description": "Game of Life",
+  "main": "allEater.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aanubiss/GoL_end.git"
+  },
+  "keywords": [
+    "TUMO"
+  ],
+  "author": "AnubisS",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aanubiss/GoL_end/issues"
+  },
+  "homepage": "https://github.com/aanubiss/GoL_end#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}

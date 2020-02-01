@@ -39,7 +39,7 @@ module.exports = class AllEater extends Def{
     }
     die(qwe) {
         if (this.energy <= 0) {
-            var num = random(1);
+            var num = Math.floor(Math.random() * 2);
             if (num > qwe) {
                 matrix[this.y][this.x] = 1;
                 var nG = new Grass(this.x, this.y, this.index);
@@ -87,7 +87,7 @@ module.exports = class AllEater extends Def{
     }
     mul() {
         if (this.energy >= 11) {
-            var newCell = random(this.chooseCell(0));
+            var newCell = Math.floor(Math.random(super.chooseCell(0).length));
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];

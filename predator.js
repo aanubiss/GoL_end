@@ -47,7 +47,7 @@ module.exports = class Predator extends Def {
     }
     mul() {
         if (this.energy >= 10) {
-            var newCell = random(this.chooseCell(0));
+        var newCell = Math.floor(Math.random () * super.chooseCell(0).length)       
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];

@@ -5,13 +5,13 @@ var io = require("socket.io")(server);
 
 app.use(express.static("."));
 
-app.get("/", function(req, res){
+app.get("/", function (req, res) {
     res.redirect("index.html")
 })
 
 server.listen(3000);
 
-var matrix = [];
+matrix = [];
 var n = 50;
 var m = 60;
 allGr = []
@@ -23,7 +23,7 @@ daleksArr = []
 for (var y = 0; y < n; y++) {
     matrix[y] = [];
     for (var x = 0; x < m; x++) {
-        matrix[y][x] = Math.round(Math.random() * 4);
+        matrix[y][x] = Math.floor(Math.random() * 4);
     }
 }
 
@@ -35,10 +35,11 @@ Predator = require("./predator")
 AllEater = require("./allEater")
 Dalek = require("./dalek")
 
-function createObj(matrix){
+function createObj() {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
+                matrix[y][x] = 1;
                 var gr = new Grass(x, y, 1)
                 allGr.push(gr);
             }
@@ -47,6 +48,7 @@ function createObj(matrix){
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 2) {
+                matrix[y][x] = 2;
                 var grE = new GrassEater(x, y, 2)
                 allGrEater.push(grE);
             }
@@ -55,6 +57,7 @@ function createObj(matrix){
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 3) {
+                matrix[y][x] = 3;
                 var grEE = new Predator(x, y, 3)
                 predatorArr.push(grEE);
             }
@@ -63,6 +66,7 @@ function createObj(matrix){
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 4) {
+                matrix[y][x] = 4;
                 var aE = new AllEater(x, y, 4)
                 allAllEater.push(aE);
             }
@@ -71,7 +75,7 @@ function createObj(matrix){
     io.sockets.emit("send matrix", matrix)
 }
 
-function game(){
+function game() {
     for (var i in allGr) {
         allGr[i].mul()
     }
@@ -104,12 +108,12 @@ function game(){
     //         daleksArr[i].exterminate();
     //     }
     // }
-    
+
     io.sockets.emit("send matrix", matrix)
 }
 
-setInterval(game, 1000)
+setInterval(game, 750)
 
-io.on("connection", function(){
-    createObj(matrix)
+io.on("connection", function () {
+    createObj()
 })

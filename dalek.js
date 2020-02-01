@@ -151,7 +151,7 @@ module.exports = class Dalek {
         }
     }
     mul() {
-        var newCell = random(this.chooseCell(0));
+        var newCell = Math.floor(Math.random() * this.chooseCell(0).length);
             if (newCell) {
                 var newDalek = new Dalek(newCell[0], newCell[1], 5);
                 daleksArr.push(newDalek);
