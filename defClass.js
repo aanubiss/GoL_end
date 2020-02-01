@@ -33,7 +33,10 @@ module.exports =  class Def{
         return found;
     }
     move() {
-        var newCell = Math.floor(Math.random () * this.chooseCell(0).length)
+       // var newCell = Math.floor(Math.random () * this.chooseCell(0).length)
+
+        var emptyCells = this.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             this.energy--;
             var newX = newCell[0];
@@ -45,12 +48,15 @@ module.exports =  class Def{
         }
     }
     eat(who) {
-        var newCell = Math.floor(Math.random () * this.chooseCell(who).length)
+        //var newCell = Math.floor(Math.random () * this.chooseCell(who).length)
+
+        var emptyCells = this.chooseCell(0);
+		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = this.index;
             matrix[this.y][this.x] = 0;
+            matrix[newY][newX] = this.index;
             this.x = newX;
             this.y = newY;
             this.energy += 3;

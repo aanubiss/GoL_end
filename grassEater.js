@@ -22,7 +22,7 @@ module.exports = class GrassEater extends Def{
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
-                var nGrE = new GrassEater(newX, newY, this.index);
+                var nGrE = new GrassEater(newX, newY, 2);
                 allGrEater.push(nGrE)
                 matrix[this.y][this.x] = 0;
                 this.energy = 10;
@@ -32,7 +32,7 @@ module.exports = class GrassEater extends Def{
     die() {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 1;
-            var nG = new Grass(this.x, this.y, this.index);
+            var nG = new Grass(this.x, this.y, 1);
             allGr.push(nG);
             for (var i in allGrEater) {
                 if (this.x == allGrEater[i].x && this.y == allGrEater[i].y) {

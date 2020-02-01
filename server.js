@@ -43,29 +43,17 @@ function createObj() {
                 var gr = new Grass(x, y, 1)
                 allGr.push(gr);
             }
-        }
-    }
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 2) {
+        else if (matrix[y][x] == 2) {
                 matrix[y][x] = 2;
                 var grE = new GrassEater(x, y, 2)
                 allGrEater.push(grE);
             }
-        }
-    }
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 3) {
+        else if (matrix[y][x] == 3) {
                 matrix[y][x] = 3;
                 var grEE = new Predator(x, y, 3)
                 predatorArr.push(grEE);
-            }
-        }
-    }
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            if (matrix[y][x] == 4) {
+            }        
+        else if (matrix[y][x] == 4) {
                 matrix[y][x] = 4;
                 var aE = new AllEater(x, y, 4)
                 allAllEater.push(aE);
@@ -112,7 +100,7 @@ function game() {
     io.sockets.emit("send matrix", matrix)
 }
 
-setInterval(game, 750)
+setInterval(game, 750) 
 
 io.on("connection", function () {
     createObj()

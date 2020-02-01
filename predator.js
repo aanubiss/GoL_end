@@ -51,7 +51,7 @@ module.exports = class Predator extends Def {
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
-                var nGrEE = new Predator(newX, newY, this.index);
+                var nGrEE = new Predator(newX, newY, 3);
                 predatorArr.push(nGrEE)
                 matrix[this.y][this.x] = 0;
             }

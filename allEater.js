@@ -42,12 +42,12 @@ module.exports = class AllEater extends Def{
             var num = Math.floor(Math.random() * 2);
             if (num > qwe) {
                 matrix[this.y][this.x] = 1;
-                var nG = new Grass(this.x, this.y, this.index);
+                var nG = new Grass(this.x, this.y, 1);
                 allGr.push(nG);
             }
             else {
                 matrix[this.y][this.x] = 2;
-                var nGE = new GrassEater(this.x, this.y, this.index);
+                var nGE = new GrassEater(this.x, this.y, 2);
                 allGrEater.push(nGE);
             }
             for (var i in allAllEater) {
@@ -91,7 +91,7 @@ module.exports = class AllEater extends Def{
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
-                var allEater = new AllEater(newX, newY, this.index);
+                var allEater = new AllEater(newX, newY, 4);
                 allAllEater.push(allEater)
                 matrix[this.y][this.x] = 0;
             }
