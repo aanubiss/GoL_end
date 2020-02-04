@@ -3,7 +3,7 @@ let Def = require("./defClass")
 module.exports = class AllEater extends Def{
     constructor(x, y, index){
         super(x, y, index);
-        this.energ = 7;
+        this.energ = 7; //բայց ինչի ա ստեղ ասենք կիսատ բառը 
         this.gr = 1;
         this.grE = 2;
         this.grF = 0;
@@ -60,7 +60,7 @@ module.exports = class AllEater extends Def{
     }
     grassEat(){
         var grF = this.grF;
-        var who = this.gr;
+        var who = this.gr; // վայ ամաաան
         if(grF < 4){
             super.eat(who);
             for (var i in allGr) {
@@ -87,10 +87,14 @@ module.exports = class AllEater extends Def{
     }
     mul() {
         if (this.energy >= 11) {
-            var newCell = Math.floor(Math.random(super.chooseCell(0).length));
+            
+            let emptyCells = super.chooseCell(0)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
+                matrix[newY][newX] = 4
                 var allEater = new AllEater(newX, newY, 4);
                 allAllEater.push(allEater)
                 matrix[this.y][this.x] = 0;

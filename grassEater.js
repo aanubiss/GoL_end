@@ -18,10 +18,14 @@ module.exports = class GrassEater extends Def{
     }
     mul() {
         if (this.energy >= 11) {
-        var newCell = Math.floor(Math.random () * super.chooseCell(0).length)
+            
+            let emptyCells = super.chooseCell(0)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
+                matrix[newY][newX] = 2
                 var nGrE = new GrassEater(newX, newY, 2);
                 allGrEater.push(nGrE)
                 matrix[this.y][this.x] = 0;

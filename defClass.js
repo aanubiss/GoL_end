@@ -41,22 +41,27 @@ module.exports =  class Def{
             this.energy--;
             var newX = newCell[0];
             var newY = newCell[1];
-            matrix[newY][newX] = this.index;
+
+            
+			matrix[newY][newX] = matrix[this.y][this.x];
             matrix[this.y][this.x] = 0;
+            
             this.x = newX;
             this.y = newY;
         }
     }
     eat(who) {
-        //var newCell = Math.floor(Math.random () * this.chooseCell(who).length)
+        
 
-        var emptyCells = this.chooseCell(0);
+        var emptyCells = this.chooseCell(who);
 		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
             var newX = newCell[0];
             var newY = newCell[1];
+            
+			matrix[newY][newX] = matrix[this.y][this.x];
             matrix[this.y][this.x] = 0;
-            matrix[newY][newX] = this.index;
+            
             this.x = newX;
             this.y = newY;
             this.energy += 3;

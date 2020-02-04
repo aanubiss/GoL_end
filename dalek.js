@@ -1,11 +1,13 @@
-module.exports = class Dalek {
+//չեմ հասկանում ինչի ինքը ժառանգված չի???? Խորթ երեխեն ա ???
+//ինչևիցե , ձեռք չեմ տա
+module.exports = class Dalek { // լսի բայց անունը Դալլաս չէր??? ինչի  Դալլեեկ?
     constructor(x, y, index) {
         this.x = x;
         this.y = y;
-        this.terr = 1;
+        this.terr = 1; // what?
         this.index = index;
         this.mulq = 0;
-        this.qq = 0;
+        this.qq = 0; // խոսքերն ավելորդ են
     }
     getNewCoordinates() {
         this.directions = [
@@ -61,7 +63,7 @@ module.exports = class Dalek {
                         break
                     }
                 }
-                // eyes //
+                // eyes // սրանց վրա ավելի շատ ժամանակ ես ծախսել քան բուն նպատակիդ
                 matrix[10][20] = 7;
                 matrix[11][20] = 7;
                 matrix[10][19] = 7;
@@ -151,11 +153,16 @@ module.exports = class Dalek {
         }
     }
     mul() {
-        var newCell = Math.floor(Math.random() * this.chooseCell(0).length);
+        
+        let emptyCells = super.chooseCell(0)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
             if (newCell) {
-                var newDalek = new Dalek(newCell[0], newCell[1], 5);
+			var newX = newCell[0];
+            var newY = newCell[1];
+            matrix[newY][newX] = 5
+                var newDalek = new Dalek(newX, newY, 5);
                 daleksArr.push(newDalek);
-                matrix[newCell[1]][newCell[0]] = 5;
         }
     }
 }

@@ -47,10 +47,14 @@ module.exports = class Predator extends Def {
     }
     mul() {
         if (this.energy >= 10) {
-        var newCell = Math.floor(Math.random () * super.chooseCell(0).length)       
+            
+            let emptyCells = super.chooseCell(0)
+            let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
+
             if (newCell) {
                 var newX = newCell[0];
                 var newY = newCell[1];
+                matrix[newY][newX] = 3
                 var nGrEE = new Predator(newX, newY, 3);
                 predatorArr.push(nGrEE)
                 matrix[this.y][this.x] = 0;
@@ -60,7 +64,9 @@ module.exports = class Predator extends Def {
     die() {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0;
-            var newGrass = new Grass(this.x, this.y, 1);
+  //չեմ հասկանում ինչ ես ուզում անել,,,այսինքն ինքը մահանում ա ու իրա տեղը խոտ ա դուրս գալիս??
+ //նույնն էլ խոտակեի մեռնելը, չհասկացա
+             var newGrass = new Grass(this.x, this.y, 1);
             allGr.push(newGrass);
             for (var i in predatorArr) {
                 if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {

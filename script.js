@@ -40,3 +40,14 @@ function paint(matrix) {
     }
 }
 socket.on("send matrix", paint)
+
+/* 
+function kill() {
+    socket.emit("kill")
+}
+function addGrass() {
+    socket.emit("add grass")
+}
+function addGrassEater() {
+    socket.emit("add grassEater")
+} */
