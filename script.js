@@ -8,11 +8,26 @@ function setup() {
     background("#acacac");
 }
 
+socket.on("weather", function(data){
+    weath = data
+});
+
 function paint(matrix) {
     for (var y = 0; y < matrix.length; y++) {
         for (var x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
-                fill("green");
+                if(weath == "winter"){
+                    fill("white");
+                }
+                else if(weath == "spring"){
+                    fill("yellowgreen");
+                }
+                else if(weath == "summer"){
+                    fill("green");
+                }
+                else if(weath == "autumn"){
+                    fill("darkorange");
+                }
             }
             else if (matrix[y][x] == 0) {
                 fill("#acacac");
@@ -47,9 +62,11 @@ socket.on("send matrix", paint)
 function meteor() {
     socket.emit("meteor")
 }
+
 function addGrass() {
     socket.emit("add grass")
 }
-function addGrassEater() {
+
+function sote() {
     socket.emit("start the end")
-}
+} 

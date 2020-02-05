@@ -58,32 +58,32 @@ module.exports = class AllEater extends Def{
             }
         }
     }
-    grassEat(){
-        var grF = this.grF;
-        var who = this.gr; // վայ ամաաան
-        if(grF < 4){
-            super.eat(who);
-            for (var i in allGr) {
-                if (this.x == allGr[i].x && this.y == allGr[i].y) {
-                    allGr.splice(i, 1);
-                    break
+    eat(){
+        let eatCells = super.chooseCell(1);
+        let eatCellGrE = super.chooseCell(2);
+        let eatCells = eatCells.concat(eatCellGrE)
+        let newCell = eatCells[Math.floor(Math.random() * eatCells.length)]
+        let who = newCell;
+        super.eat(who)
+        if(super.newCell){
+            if(who[0][1] == 1){
+                for (var i in allGr) {
+                    if (this.x == allGr[i].x && this.y == allGr[i].y) {
+                        allGr.splice(i, 1);
+                        break
+                    }
                 }
-                this.grF++
+            }
+            if(who[0][1] == 2){
+                for (var i in allGrEater) {
+                    if (this.x == allGrEater[i].x && this.y == allGrEater[i].y) {
+                        allGr.splice(i, 1);
+                        break
+                    }
+                }
             }
         }
-        else{
-            this.die(0.999);
-        }
-    }
-    grasseaterEat(){
-        var who = this.grE;
-        super.eat(who);
-        for (var i in allGrEater) {
-            if (this.x == allGrEater[i].x && this.y == allGrEater[i].y) {
-                allGrEater.splice(i, 1);
-                break
-            }
-        }
+        
     }
     mul() {
         if (this.energy >= 11) {

@@ -9,10 +9,12 @@ module.exports = class GrassEater extends Def{
     eat(){
         var who = this.who;
         super.eat(who)
-        for (var i in allGr) {
-            if (this.x == allGr[i].x && this.y == allGr[i].y) {
-                allGr.splice(i, 1);
-                break
+        if(super.newCell){
+            for (var i in allGr) {
+                if (this.x == allGr[i].x && this.y == allGr[i].y) {
+                    allGr.splice(i, 1);
+                    break
+                }
             }
         }
     }

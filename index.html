@@ -1,48 +1,43 @@
 <html>
-    <head>
-        <meta charset="utf8">
-        <script src="/socket.io/socket.io.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
-        <script src="script.js"></script>
-        <style>
-            #legend {
-                position: absolute;
-                top: 0;
-                right: 0;
-                width: 800px;
-            }
-            .legend-color {
-                width: 30px;
-                height: 30px;
-            }
-            td {
-                border: 1px solid black;
-                font-size: 14px;
-                padding-left: 5px;
-            }
-        </style>
-    </head>
-    <body>
 
-        <div class="tools">
-            <h1 style="color:yellowgreen">Events</h1>
-            <ul>
-                <li>
-                    <button onclick="meteor()">Meteor</button>
-                </li>
-                <li>
-                    <button onclick="addGrass()">Add Grass</button>
-                </li>
-                <li>
-                    <button onclick="addGrassEater()">Start of the end</button>
-                </li>
-            </ul>
-        </div>
+<head>
+    <meta charset="utf8">
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.5.14/p5.js"></script>
+    <script src="script.js"></script>
+    <style>
+        #legend {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 800px;
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 30px;
+        }
+
+        td {
+            border: 1px solid rgb(73, 13, 13);
+            font-size: 14px;
+            padding-left: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="padding-right: 15px;">
+        <h1 style="color:yellowgreen">Events</h1>
+        <button onclick="meteor()">Meteor</button>
+        <button onclick="addGrass()">Add Grass</button>
+        <button onclick="sote()">Start of the end</button>
+    </div>
 
 
 
 
-        <!-- <table id="legend">
+    <!-- <table id="legend">
             <tr>
                 <td class="legend-color">Գույն</td>
                 <td>Անվանում</td>
@@ -100,5 +95,6 @@
                 <td>Աշխարհի վերջի ժամանակ</td>
             </tr>
         </table> -->
-    </body>
+</body>
+
 </html>

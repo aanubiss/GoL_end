@@ -1,12 +1,12 @@
 let Def = require("./defClass")
 
 module.exports = class Predator extends Def {
-    constructor(x, y, index){
+    constructor(x, y, index) {
         super(x, y, index)
         this.energy = 6;
         this.who = 2;
     }
-    getNewCoordinates(){
+    getNewCoordinates() {
         this.directions = [
             [this.x - 1, this.y - 1],
             [this.x, this.y - 1],
@@ -35,19 +35,21 @@ module.exports = class Predator extends Def {
             [this.x + 2, this.y + 1]
         ];
     }
-    eat(){
+    eat() {
         var who = this.who;
         super.eat(who);
-        for (var i in allGrEater) {
-            if (this.x == allGrEater[i].x && this.y == allGrEater[i].y) {
-                allGrEater.splice(i, 1);
-                break
+        if (super.newCell) {
+            for (var i in allGrEater) {
+                if (this.x == allGrEater[i].x && this.y == allGrEater[i].y) {
+                    allGrEater.splice(i, 1);
+                    break
+                }
             }
         }
     }
     mul() {
         if (this.energy >= 10) {
-            
+
             let emptyCells = super.chooseCell(0)
             let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
@@ -64,9 +66,9 @@ module.exports = class Predator extends Def {
     die() {
         if (this.energy <= 0) {
             matrix[this.y][this.x] = 0;
-  //չեմ հասկանում ինչ ես ուզում անել,,,այսինքն ինքը մահանում ա ու իրա տեղը խոտ ա դուրս գալիս??
- //նույնն էլ խոտակեի մեռնելը, չհասկացա
-             var newGrass = new Grass(this.x, this.y, 1);
+            //չեմ հասկանում ինչ ես ուզում անել,,,այսինքն ինքը մահանում ա ու իրա տեղը խոտ ա դուրս գալիս??
+            //նույնն էլ խոտակեի մեռնելը, չհասկացա
+            var newGrass = new Grass(this.x, this.y, 1);
             allGr.push(newGrass);
             for (var i in predatorArr) {
                 if (this.x == predatorArr[i].x && this.y == predatorArr[i].y) {

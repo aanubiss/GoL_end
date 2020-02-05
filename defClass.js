@@ -40,9 +40,7 @@ module.exports =  class Def{
         if (newCell) {
             this.energy--;
             var newX = newCell[0];
-            var newY = newCell[1];
-
-            
+            var newY = newCell[1];  
 			matrix[newY][newX] = matrix[this.y][this.x];
             matrix[this.y][this.x] = 0;
             
@@ -51,8 +49,6 @@ module.exports =  class Def{
         }
     }
     eat(who) {
-        
-
         var emptyCells = this.chooseCell(who);
 		var newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
         if (newCell) {
