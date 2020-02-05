@@ -145,7 +145,7 @@ module.exports = class Dalek { // լսի բայց անունը Դալլաս չէ
                 matrix[31][41] = 7;
                 matrix[31][40] = 7;
                 //
-                matrix[29][43] = 7;
+                matrix[29][43] = 7; 
                 matrix[29][42] = 7;
                 matrix[30][43] = 7;
                 matrix[30][42] = 7;
@@ -154,7 +154,7 @@ module.exports = class Dalek { // լսի բայց անունը Դալլաս չէ
     }
     mul() {
         
-        let emptyCells = super.chooseCell(0)
+        let emptyCells = this.chooseCell(0)
         let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
             if (newCell) {

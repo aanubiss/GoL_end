@@ -35,19 +35,21 @@ function paint(matrix) {
             else if (matrix[y][x] == 7) {
                 fill("red");
             }
+            else if (matrix[y][x] == 9) {
+                fill("brown");
+            }
             rect(x * side, y * side, side, side);
         }
     }
 }
 socket.on("send matrix", paint)
 
-/* 
-function kill() {
-    socket.emit("kill")
+function meteor() {
+    socket.emit("meteor")
 }
 function addGrass() {
     socket.emit("add grass")
 }
 function addGrassEater() {
-    socket.emit("add grassEater")
-} */
+    socket.emit("start the end")
+}

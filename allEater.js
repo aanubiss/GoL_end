@@ -102,4 +102,3 @@ module.exports = class AllEater extends Def{
         }
     }    
 }
-fff

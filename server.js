@@ -12,14 +12,14 @@ app.get("/", function (req, res) {
 server.listen(3000);
 
 matrix = [];
-var n = 50;
+var n = 60;
 var m = 60;
 allGr = []
 allGrEater = []
 predatorArr = []
 allAllEater = []
 daleksArr = []
-
+meteorsArr = []
 for (var y = 0; y < n; y++) {
     matrix[y] = [];
     for (var x = 0; x < m; x++) {
@@ -29,6 +29,7 @@ for (var y = 0; y < n; y++) {
 
 io.sockets.emit("send matrix", matrix)
 
+Meteor = require("./meteor")
 Grass = require("./grass")
 GrassEater = require("./grassEater")
 Predator = require("./predator")
@@ -86,16 +87,16 @@ function game() {
         allAllEater[i].mul()
         allAllEater[i].die()
     }
-    // for (var i in daleksArr) {
-    //     if (daleksArr.length <=50) {
-    //         setTimeout(() => {
-    //             daleksArr[i].mul()
-    //         }, 7500);
-    //     }
-    //     else {
-    //         daleksArr[i].exterminate();
-    //     }
-    // }
+    for (var i in daleksArr) {
+        if (daleksArr.length <=50) {
+            setTimeout(() => {
+                daleksArr[i].mul()
+            }, 7500);
+        }
+        else {
+            daleksArr[i].exterminate();
+        }
+    }
 
     io.sockets.emit("send matrix", matrix)
 }
@@ -108,60 +109,65 @@ setInterval(game, 1000)
 
 /////////////////
 
-/* 
 
 
-function kill() {
-    grassArr = [];
-    grassEaterArr = []
-    for (var y = 0; y < matrix.length; y++) {
-        for (var x = 0; x < matrix[y].length; x++) {
-            matrix[y][x] = 0;
-        }
-    }
-    io.sockets.emit("send matrix", matrix);
+function getRndInteger(min, max) {
+    return Math.floor(Math.random() * (max - min) ) + min;
 }
 
 
-function addGrass() {
-    for (var i = 0; i < 7; i++) {
+function meteor() {
     var x = Math.floor(Math.random() * matrix[0].length)
-    var y = Math.floor(Math.random() * matrix.length)
-        if (matrix[y][x] == 0) {
-            matrix[y][x] = 1
-            var gr = new Grass(x, y, 1)
-            grassArr.push(gr)
+    var y = Math.floor(Math.random() * matrix.length);
+    var directions = [
+        [x - 1, y - 1],
+        [x, y - 1],
+        [x + 1, y - 1],
+        [x - 1, y],
+        [x + 1, y],
+        [x - 1, y + 1],
+        [x, y + 1],
+        [x + 1, y + 1]
+    ]; 
+    
+    matrix[y][x] = 9
+    var met = new Meteor(x, y, 9)
+    meteorsArr.push(met)
+   
+    setInterval(function f() {
+        for (let i = 0; i < directions.length; i++) {
+            var newX = directions[i][0]
+            var newY = directions[i][1]
+            matrix[newY][newX] = 9
+            var met = new Meteor(newX, newY, 9)
+            meteorsArr.push(met)
         }
-    }
+    }, 100)
+    
+    }  
+    
     io.sockets.emit("send matrix", matrix);
-}
-function addGrassEater() {
+function addGrass() {
     for (var i = 0; i < 7; i++) {   
     var x = Math.floor(Math.random() * matrix[0].length)
     var y = Math.floor(Math.random() * matrix.length)
         if (matrix[y][x] == 0) {
-            matrix[y][x] = 2
-            grassEaterArr.push(new GrassEater(x, y, 2))
+            matrix[y][x] = 1
+            allGr.push(new Grass(x, y, 1))
         }
     }
     io.sockets.emit("send matrix", matrix);
 }
 
-
+function sote(){
+    matrix[m/2][n/2] = 5;
+    daleksArr.push(new Dalek(m/2, n/2, 5))
+    io.sockets.emit("send mattrix", matrix)
+}
 
 io.on('connection', function (socket) {
-    createObject();
-    socket.on("kill", kill);
+    createObj();
+    socket.on("meteor", meteor);
     socket.on("add grass", addGrass);
-    socket.on("add grassEater", addGrassEater);
+    socket.on("start the end", sote);
 });
-
- */
-
-
-
-
-
-io.on("connection", function () {
-    createObj()
-})
