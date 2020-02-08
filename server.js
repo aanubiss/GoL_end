@@ -89,16 +89,6 @@ function game() {
         allAllEater[i].mul()
         allAllEater[i].die()
     }
-    for (var i in daleksArr) {
-        if (daleksArr.length <= 50) {
-            setTimeout(() => {
-                daleksArr[i].mul()
-            }, 7500);
-        }
-        else {
-            daleksArr[i].exterminate();
-        }
-    }
 
     io.sockets.emit("send matrix", matrix)
 }
@@ -130,22 +120,19 @@ function meteor() {
     matrix[y][x] = 9
     var met = new Meteor(x, y, 9)
     meteorsArr.push(met)
-
-    setInterval(function f() {
-        for (let i = 0; i < directions.length; i++) {
-            var newX = directions[i][0]
-            var newY = directions[i][1]
-            matrix[newY][newX] = 9
-            var met = new Meteor(newX, newY, 9)
-            meteorsArr.push(met)
-        }
-    }, 100) 
+    for (let i = 0; i < directions.length; i++) {
+        var newX = directions[i][0]
+        var newY = directions[i][1] 
+        matrix[newY][newX] = 9
+        var met = new Meteor(newX, newY, 9)
+        meteorsArr.push(met)
+    }
     io.sockets.emit("send matrix", matrix);
 }
 
 
 function addGrass() {
-    for (var i = 0; i < 7; i++) {
+    for (var i = 0; i < 20; i++) {
         var x = Math.floor(Math.random() * matrix[0].length)
         var y = Math.floor(Math.random() * matrix.length)
         if (matrix[y][x] == 0) {
@@ -158,13 +145,19 @@ function addGrass() {
 
 function sote() {
     matrix[m / 2][n / 2] = 5;
-    daleksArr.push(new Dalek(m / 2, n / 2, 5))
-    io.sockets.emit("send mattrix", matrix)
-} 
+    var dalek = new Dalek(m / 2, n / 2, 5)
+    daleksArr.push(dalek)
+    setTimeout(() => {
+        for (let i in daleksArr) {
+            daleksArr[i].exterminate()
+        }
+    }, 5000)
+    io.sockets.emit("send matrix", matrix)
+}
 
- function weather() {
-  if (weath == "winter") {   
 
+function weather() {
+    if (weath == "winter") {
         weath = "spring"
     }
     else if (weath == "spring") {
@@ -176,16 +169,16 @@ function sote() {
     else if (weath == "autumn") {
         weath = "winter"
     }
-    io.sockets.emit("weather", weath)
+    io.sockets.emit('weather', weath)
 }
-setInterval(weather, 5000)
- 
+setInterval(weather, 5000);
 
-io.on('connection', function (socket) {
+
+io.on('connection', (socket) => {
     createObj();
     socket.on("meteor", meteor);
     socket.on("add grass", addGrass);
-    socket.on("start the end", sote); 
+    socket.on("start the end", sote);
 });
 
 

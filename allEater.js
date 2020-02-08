@@ -3,7 +3,7 @@ let Def = require("./defClass")
 module.exports = class AllEater extends Def{
     constructor(x, y, index){
         super(x, y, index);
-        this.energ = 7; //բայց ինչի ա ստեղ ասենք կիսատ բառը 
+        this.energy = 7; //բայց ինչի ա ստեղ ասենք կիսատ բառը 
         this.gr = 1;
         this.grE = 2;
         this.grF = 0;

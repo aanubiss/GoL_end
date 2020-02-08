@@ -8,9 +8,10 @@ function setup() {
     background("#acacac");
 }
 
-socket.on("weather", function(data){
-    weath = data
-});
+var weath
+socket.on("weather", function (data) {
+    weath = data;
+})
 
 function paint(matrix) {
     for (var y = 0; y < matrix.length; y++) {
@@ -20,13 +21,13 @@ function paint(matrix) {
                     fill("white");
                 }
                 else if(weath == "spring"){
-                    fill("yellowgreen");
+                    fill("#9acd32");
                 }
                 else if(weath == "summer"){
                     fill("green");
                 }
                 else if(weath == "autumn"){
-                    fill("darkorange");
+                    fill("#ff8c00");
                 }
             }
             else if (matrix[y][x] == 0) {
